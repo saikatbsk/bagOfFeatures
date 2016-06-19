@@ -10,12 +10,14 @@
 %%      all_des        - All the SURF descriptors: m*64.
 %%      all_des_sample - All the SURF descriptors per sample: 1*n cell.
 %%      class_label    - Class label for each surf descriptor: m*1.
+%%      all_pos_sample - Positions of all the SURF descriptors per sample.
 %% ========================================================================
 
-function [all_des all_des_sample class_label] = extractFeatures(image_set)
+function [all_des all_des_sample class_label all_pos_sample] = extractFeatures(image_set)
     all_des = [];
     all_des_sample = {};
     class_label = [];
+    all_pos_sample = {};
 
     K = 64;                     % SURF descriptor dimension
     Options.upright = false;    % Rotation invariant
@@ -42,6 +44,9 @@ function [all_des all_des_sample class_label] = extractFeatures(image_set)
 
             all_des = cat(1, all_des, D);
             all_des_sample = cat(2, all_des_sample, D);
+
+            pos = [pts.x; pts.y]';
+            all_pos_sample = cat(2, all_pos_sample, pos);
 
             tmp = ones(size(D, 1), 1) * k;
             class_label = cat(1, class_label, tmp);
