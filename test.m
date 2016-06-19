@@ -4,7 +4,7 @@
 
 % Either run main or load variables.mat
 
-% load('variables.mat');
+%// load('variables.mat');
 
 % Get the test image from user and test
 
