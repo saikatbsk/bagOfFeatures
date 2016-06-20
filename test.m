@@ -32,9 +32,9 @@ while ~strcmp(op, 'N')
 
         fprintf('PREDICTION: %s\n\n', char(prediction)); fflush(stdout);
 
-        text = strcat('PREDICTION: ', prediction);
+        mytext = strcat('PREDICTION: ', prediction);
 
-        imshow(img); title(text, 'fontsize', 16, 'color', 'red');
+        imshow(img); title(mytext, 'fontsize', 16, 'color', 'red');
     else
         fprintf('>>> File does not exist!\n\n'); fflush(stdout);
     end
