@@ -22,7 +22,6 @@ while ~strcmp(op, 'N')
         img = imread(filename);
 
         % Test against the training set
-
         test_im(1, 1) = { filename };
 
         [all_des_test_im all_des_sample_test_im class_label_test_im] = extractFeatures(test_im);
