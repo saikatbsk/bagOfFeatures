@@ -11,12 +11,12 @@
 op = '';
 
 while ~strcmp(op, 'N')
-    %// prompt = '[category/filename] of test image? '; fflush(stdout);
-    prompt = 'Test image? '; fflush(stdout);
+    prompt = '[category/filename] of test image? '; fflush(stdout);
+    %// prompt = 'Test image? '; fflush(stdout);
     str    = input(prompt, 's');
 
-    %// filename = fullfile(dataset_root, str);
-    filename = str;
+    filename = fullfile(dataset_root, str);
+    %// filename = str;
 
     if exist(filename, 'file') == 2
         img = imread(filename);
