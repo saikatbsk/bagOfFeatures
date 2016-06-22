@@ -8,7 +8,7 @@
 
 % Get the test image from user and test
 
-op = '';
+op   = '';
 
 while ~strcmp(op, 'N')
     prompt = '[category/filename] of test image? '; fflush(stdout);
@@ -34,7 +34,8 @@ while ~strcmp(op, 'N')
 
         mytext = strcat('PREDICTION: ', prediction);
 
-        imshow(img); title(mytext, 'fontsize', 16, 'color', 'red');
+        imshow(img);
+        title(mytext, 'fontsize', 16, 'color', 'red');
     else
         fprintf('>>> File does not exist!\n\n'); fflush(stdout);
     end
