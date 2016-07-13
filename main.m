@@ -19,12 +19,13 @@ clear; clc;
 fprintf('Loading dataset..'); fflush(stdout);
 
 dataset_root    = '../Datasets/101_ObjectCategories';
-class_names     = { 'accordion', 'airplanes', 'bonsai', 'butterfly', 'cellphone', 'chandelier', 'Leopards' };
-image_per_class = 30;
+class_names     = { 'accordion', 'airplanes', 'bonsai', ...
+                    'butterfly', 'cellphone', 'chandelier', 'Leopards' };
 
-image_set    = imageRead(dataset_root, class_names, image_per_class);
-training_set = image_set(:, 1:20);
-test_set     = image_set(:, 21:end);
+image_per_class = 30;
+image_set       = imageRead(dataset_root, class_names, image_per_class);
+training_set    = image_set(:, 1:20);
+test_set        = image_set(:, 21:end);
 
 fprintf('Done\n\n'); fflush(stdout);
 
