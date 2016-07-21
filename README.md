@@ -3,7 +3,7 @@
 Image classification using the Bag of Features approach. Used the K-mean algorithm to create a codebook using SURF (Speeded-Up Robust Features) features extracted from natural images. The codebook is utilized to create feature histograms of training images. Finally, the K-Nearest Neighbor algorithm is used to classify test images into previously trained classes.
 
 - Tested with [GNU Octave (4.0.2)](https://www.gnu.org/software/octave/).
-- Looking for MATLAB version? [available here](https://github.com/saikatbsk/daily-dose-of-code/tree/master/MachineLearning/03_BoF)
+- Looking for MATLAB version? [available here](https://github.com/saikatbsk/daily-dose-of-code/tree/master/MachineLearning/02_BoF)
 
 #### Instructions
 
