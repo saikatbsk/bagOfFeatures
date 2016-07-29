@@ -42,11 +42,11 @@ function [all_des all_des_sample class_label all_pos_sample] = extractFeatures(i
             pts = OpenSurf(img, Options);
             D   = (reshape([pts.descriptor], K, []))';  % Landmark descriptors
 
-            all_des = cat(1, all_des, D);
-            all_des_sample = cat(2, all_des_sample, D);
-
             pos = [pts.x; pts.y]';
             all_pos_sample = cat(2, all_pos_sample, pos);
+
+            all_des = cat(1, all_des, D);
+            all_des_sample = cat(2, all_des_sample, D);
 
             tmp = ones(size(D, 1), 1) * k;
             class_label = cat(1, class_label, tmp);
