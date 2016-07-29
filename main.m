@@ -1,6 +1,6 @@
 %% ========================================================================
 %% This is the main project file responsible for - (1) loading the dataset,
-%% (2) extracting features, (3) creating a codebook, (4) generating feature
+%% (2) extracting features, (3) creating a hists, (4) generating feature
 %% histogram, and (5) classification.
 %%
 %% Tested with GNU Octave 4.0.2 (URL: https://www.gnu.org/software/octave/)
@@ -19,8 +19,7 @@ clear; clc;
 fprintf('Loading dataset..'); fflush(stdout);
 
 dataset_root    = '../Datasets/101_ObjectCategories';
-class_names     = { 'accordion', 'airplanes', 'bonsai', ...
-                    'butterfly', 'cellphone', 'chandelier', 'Leopards' };
+class_names     = { 'accordion', 'airplanes', 'bonsai', 'butterfly', 'cellphone', 'chandelier', 'Leopards' };
 
 image_per_class = 30;
 image_set       = imageRead(dataset_root, class_names, image_per_class);
@@ -45,11 +44,11 @@ N = 500;    % Number of clusters
 
 centers = createKmeanClusters(all_des, all_des_sample, N);
 
-%% Create codebook - Build histograms from training classes ===============
+%% Create hists - Build histograms from training classes ==================
 
 knnTHRESH = 0.7;
 
-codebook = buildHist_train(centers, all_des, class_label, knnTHRESH, N);
+hists = buildHist_train(centers, all_des, class_label, knnTHRESH, N);
 
 %% ========================================================================
 %%
@@ -65,11 +64,11 @@ fprintf('>>> Starting testing phase..\n\n'); fflush(stdout);
 
 %% Build histograms from test classes =====================================
 
-codebook_test = buildHist_test(centers, all_des_sample_test, knnTHRESH, N);
+hists_test = buildHist_test(centers, all_des_sample_test, knnTHRESH, N);
 
 %% Classify ===============================================================
 
-conf_mat = classify(codebook, codebook_test, class_names, test_set, N);
+conf_mat = classify(hists, hists_test, class_names, test_set, N);
 
 displayResults;
 

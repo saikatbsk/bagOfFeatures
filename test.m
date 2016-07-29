@@ -25,9 +25,9 @@ while ~strcmp(op, 'N')
         test_im(1, 1) = { filename };
 
         [all_des_test_im all_des_sample_test_im class_label_test_im] = extractFeatures(test_im);
-        codebook_test_im = buildHist_test(centers, all_des_sample_test_im, knnTHRESH, N);
+        hists_test_im = buildHist_test(centers, all_des_sample_test_im, knnTHRESH, N);
 
-        [IDX, D]   = kNearestNeighbors(codebook, codebook_test_im, 1);
+        [IDX, D]   = kNearestNeighbors(hists, hists_test_im, 1);
         prediction = class_names(IDX(1));
 
         fprintf('PREDICTION: %s\n\n', char(prediction)); fflush(stdout);

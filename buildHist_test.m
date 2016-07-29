@@ -8,13 +8,13 @@
 %%      N              - Number of clusters.
 %%
 %% Returns:
-%%      codebook    - Contains feature histogram for all the classes.
+%%      hists          - Contains feature histogram for all the classes.
 %% ========================================================================
 
-function codebook = buildHist_test(centers, all_des_sample, THRESH, N)
-    fprintf('Begin codebook creation..'); fflush(stdout);
+function hists = buildHist_test(centers, all_des_sample, THRESH, N)
+    fprintf('Begin hists creation..'); fflush(stdout);
 
-    codebook = [];
+    hists = [];
 
     for i = 1:size(all_des_sample, 2)
         % Descriptor of each test image
@@ -37,7 +37,7 @@ function codebook = buildHist_test(centers, all_des_sample, THRESH, N)
         % Normalization and summary
         _hist = _hist / sum(_hist);
 
-        codebook = [codebook; _hist];
+        hists = [hists; _hist];
     end
 
     fprintf('Done\n\n'); fflush(stdout);

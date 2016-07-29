@@ -3,8 +3,8 @@
 %% histogram to histograms of all classes.
 %%
 %% Parameters:
-%%      codebook      - Histograms from training classes
-%%      codebook_test - Histograms from test classes
+%%      hists         - Histograms from training classes
+%%      hists_test    - Histograms from test classes
 %%      class_names   - Names of image classes
 %%      test_set      - Full path of all images
 %%      N             - Number of clusters
@@ -13,14 +13,14 @@
 %%      conf_mat      - Confusion matrix
 %% ========================================================================
 
-function conf_mat = classify(codebook, codebook_test, class_names, test_set, N)
-    num_testsamples = size(codebook_test, 1);   % Number of test images
+function conf_mat = classify(hists, hists_test, class_names, test_set, N)
+    num_testsamples = size(hists_test, 1);      % Number of test images
     num_class       = size(class_names, 2);     % Number of classes
     conf_mat = double(zeros(num_class, num_class));
 
     fprintf('Creating confusion matrix..'); fflush(stdout);
 
-    [IDX, D] = kNearestNeighbors(codebook, codebook_test, 1);
+    [IDX, D] = kNearestNeighbors(hists, hists_test, 1);
 
     k = 1;
 
