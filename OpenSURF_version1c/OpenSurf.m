@@ -92,4 +92,3 @@ ipts = FastHessian_getIpoints(FastHessianData,Options.verbose);
 if(~isempty(ipts))
     ipts = SurfDescriptor_DecribeInterestPoints(ipts,Options.upright, Options.extended, iimg, Options.verbose);
 end
-

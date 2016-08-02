@@ -2,20 +2,20 @@ function [ipts, np]=FastHessian_interpolateExtremum(r, c,  t,  m,  b,  ipts, np)
 % This function FastHessian_interpolateExtremum will ..
 %
 % [ipts,np] = FastHessian_interpolateExtremum( r,c,t,m,b,ipts,np )
-%  
+%
 %  inputs,
-%    r : 
-%    c : 
-%    t : 
-%    m : 
-%    b : 
-%    ipts : 
-%    np : 
-%  
+%    r :
+%    c :
+%    t :
+%    m :
+%    b :
+%    ipts :
+%    np :
+%
 %  outputs,
-%    ipts : 
-%    np : 
-%  
+%    ipts :
+%    np :
+%
 % Function is written by D.Kroon University of Twente (July 2010)
 D = FastHessian_BuildDerivative(r, c, t, m, b);
 H = FastHessian_BuildHessian(r, c, t, m, b);
@@ -35,7 +35,7 @@ if (abs(O(1)) < 0.5 && abs(O(2)) < 0.5 && abs(O(3)) < 0.5)
     ipts(np).scale = double(((2/15) * (m.filter + O(3) * filterStep)));
     ipts(np).laplacian = fix(FastHessian_getLaplacian(m,r,c,t));
 end
-  
+
 function D=FastHessian_BuildDerivative(r,c,t,m,b)
 dx = (FastHessian_getResponse(m,r, c + 1, t) - FastHessian_getResponse(m,r, c - 1, t)) / 2;
 dy = (FastHessian_getResponse(m,r + 1, c, t) - FastHessian_getResponse(m,r - 1, c, t)) / 2;

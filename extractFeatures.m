@@ -5,8 +5,6 @@
 %% Parameters:
 %%      image_set      - Holds paths to images. M*N cell array, M = Number of
 %%                       image categories, N = Samples per category.
-%%      A              - Scalar. Weightage to be given to SURF features.
-%%      B              - Scalar. Weightage to be given to color features.
 %%
 %% Returns:
 %%      all_des        - All the SURF descriptors: m*64.
@@ -14,7 +12,7 @@
 %%      class_label    - Class label for each surf descriptor: m*1.
 %% ========================================================================
 
-function [all_des all_des_sample class_label] = extractFeatures(image_set, A, B)
+function [all_des all_des_sample class_label] = extractFeatures(image_set)
     all_des = [];
     all_des_sample = {};
     class_label = [];
@@ -40,24 +38,6 @@ function [all_des all_des_sample class_label] = extractFeatures(image_set, A, B)
             str = char(image_set(i, j));
             img = imread(str);
             pts = OpenSurf(img, Options);
-
-            %% Combine color features with SURF descriptors
-            for l = 1:size(pts, 2)
-                ip = pts(l);
-                I  = featureAsImage(img, ip);
-
-                if size(img, 3) < 3     % Need to remove gray/bw images from dataset
-                    disp(str); fflush(stdout);
-                else
-                    mR = mean(mean(I(:, :, 1)));
-                    mG = mean(mean(I(:, :, 2)));
-                    mB = mean(mean(I(:, :, 3)));
-                    m  = mean([mR mG mB]);
-                end
-
-                %% Not sure what I am doing here
-                [pts(l).descriptor] = (A * [pts(l).descriptor]) + (B * (m/255));
-            end
 
             D = (reshape([pts.descriptor], K, []))';        % Landmark descriptors
 

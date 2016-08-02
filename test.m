@@ -12,11 +12,9 @@ op = '';
 
 while ~strcmp(op, 'N')
     prompt = '[category/filename] of test image? '; fflush(stdout);
-    %// prompt = 'Test image? '; fflush(stdout);
     str    = input(prompt, 's');
 
     filename = fullfile(dataset_root, str);
-    %// filename = str;
 
     if exist(filename, 'file') == 2
         img = imread(filename);
@@ -24,7 +22,7 @@ while ~strcmp(op, 'N')
         % Test against the training set
         test_im(1, 1) = { filename };
 
-        [all_des_test_im all_des_sample_test_im class_label_test_im] = extractFeatures(test_im, A, B);
+        [all_des_test_im all_des_sample_test_im class_label_test_im] = extractFeatures(test_im);
         hists_test_im = buildHist_test(centers, all_des_sample_test_im, knnTHRESH, N);
 
         [IDX, D]   = kNearestNeighbors(hists, hists_test_im, 1);
