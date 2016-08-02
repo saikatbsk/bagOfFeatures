@@ -7,8 +7,6 @@ Image classification using the Bag of Features approach. Used the K-mean algorit
 
 #### Instructions
 
-- Download the **Caltech 101** dataset from [here](http://www.vision.caltech.edu/Image_Datasets/Caltech101/101_ObjectCategories.tar.gz).
-- Edit `main.m` and change the value for `dataset_root`.
 - Run `main` to train and test the system. Displays the confusion matrix and average accuracy.
 - Run `test` to test with individual files.
 

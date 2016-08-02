@@ -18,13 +18,17 @@ clear; clc;
 
 fprintf('Loading dataset..'); fflush(stdout);
 
-dataset_root    = '../Datasets/101_ObjectCategories';
-class_names     = { 'accordion', 'airplanes', 'bonsai', 'butterfly', 'cellphone', 'chandelier', 'Leopards' };
+dataset_root    = 'ColorImages';
+class_names     = { 'accordion', 'airplanes', 'bonsai', 'butterfly', 'cellphone', 'chandelier', ...
+                    'dolphin', 'dragonfly', 'elephant', 'leopards', 'mandolin', 'motorbikes' };
 
 image_per_class = 30;
 image_set       = imageRead(dataset_root, class_names, image_per_class);
-training_set    = image_set(:, 1:20);
-test_set        = image_set(:, 21:end);
+training_set    = image_set(:, 1:25);
+test_set        = image_set(:, 26:end);
+
+A = 1;      % Weightage to be given to SURF features
+B = 0.08;   % Weightage to be given to color features
 
 fprintf('Done\n\n'); fflush(stdout);
 
@@ -36,7 +40,7 @@ fprintf('>>> Starting training phase..\n\n'); fflush(stdout);
 % all_des_sample - All the SURF descriptors per sample (1*n cell)
 % class_label    - Class label for each surf descriptor (m*1)
 
-[all_des all_des_sample class_label] = extractFeatures(training_set);
+[all_des all_des_sample class_label] = extractFeatures(training_set, A, B);
 
 %% Creating codebook using K-mean clustering ==============================
 
@@ -60,7 +64,7 @@ fprintf('>>> Starting testing phase..\n\n'); fflush(stdout);
 
 %% Extract SURF features from test set ====================================
 
-[all_des_test all_des_sample_test class_label_test] = extractFeatures(test_set);
+[all_des_test all_des_sample_test class_label_test] = extractFeatures(test_set, A, B);
 
 %% Build histograms from test classes =====================================
 

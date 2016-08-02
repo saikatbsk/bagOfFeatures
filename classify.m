@@ -16,6 +16,7 @@
 function conf_mat = classify(hists, hists_test, class_names, test_set, N)
     num_testsamples = size(hists_test, 1);      % Number of test images
     num_class       = size(class_names, 2);     % Number of classes
+
     conf_mat = double(zeros(num_class, num_class));
 
     fprintf('Creating confusion matrix..'); fflush(stdout);
@@ -29,6 +30,7 @@ function conf_mat = classify(hists, hists_test, class_names, test_set, N)
             % Get original image class name
             image_path  = test_set(i, j);
             parts       = regexp(image_path, '/', 'split');
+            
             image_class_orig = parts{1}(end - 1);
 
             % Get predicted image class name

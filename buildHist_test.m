@@ -24,20 +24,19 @@ function hists = buildHist_test(centers, all_des_sample, THRESH, N)
         [IDX, D] = kNearestNeighbors(centers, double(sample_des), 1);
 
         % Statistics
-        _hist = double(zeros(1, N));
+        hist = double(zeros(1, N));
 
         for j = 1:size(IDX)
             if D(j) > THRESH
                 continue;
             end
 
-            _hist(IDX(j)) = _hist(IDX(j)) + 1;
+            hist(IDX(j)) = hist(IDX(j)) + 1;
         end
 
         % Normalization and summary
-        _hist = _hist / sum(_hist);
-
-        hists = [hists; _hist];
+        hist  = hist / sum(hist);
+        hists = [hists; hist];
     end
 
     fprintf('Done\n\n'); fflush(stdout);
