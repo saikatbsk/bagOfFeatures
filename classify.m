@@ -30,7 +30,7 @@ function conf_mat = classify(hists, hists_test, class_names, test_set, N)
             % Get original image class name
             image_path  = test_set(i, j);
             parts       = regexp(image_path, '/', 'split');
-            
+
             image_class_orig = parts{1}(end - 1);
 
             % Get predicted image class name

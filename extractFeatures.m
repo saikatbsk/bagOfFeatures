@@ -17,10 +17,11 @@ function [all_des all_des_sample class_label] = extractFeatures(image_set)
     all_des_sample = {};
     class_label = [];
 
-    K = 130;                    % SURF descriptor dimension
     Options.upright  = true;    % Rotation invariant
     Options.tresh    = 0.0001;  % Hessian response threshold
     Options.extended = true;    % Descriptor length 128
+
+    K = 128;                    % Must be same with SURF dimension
 
     % Add OpenSURF_version1c/ to Octave path
     currentfile = 'extractFeatures.m';
@@ -40,9 +41,7 @@ function [all_des all_des_sample class_label] = extractFeatures(image_set)
             img = imread(str);
             pts = OpenSurf(img, Options);
 
-            comb_f = [[pts.descriptor]; [pts.orientation]; [pts.scale]];
-
-            D = (reshape(comb_f, K, []))';                  % Landmark descriptors
+            D = (reshape([pts.descriptor], K, []))';        % Landmark descriptors
 
             all_des = cat(1, all_des, D);                   % same as [all_des; D]
             all_des_sample = cat(2, all_des_sample, D);     % same as [all_des_sample, D]

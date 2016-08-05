@@ -28,7 +28,7 @@ function [centers] = createKmeanClusters(all_des, all_des_sample, N)
     % K-means clustering
     fprintf('Begin K-mean clustering..\n'); fflush(stdout);
 
-    nIters = 40;    % Max iterations
+    nIters = 200;   % Max iterations
     thrErr = 0.01;  % Error threshold
 
     for n = 1:nIters
@@ -73,12 +73,12 @@ function [centers] = createKmeanClusters(all_des, all_des_sample, N)
         end
 
         % Termination condition
-        if n >= 1
+        if n > 1
             % Centres is stable
             diff = max(max(abs(centers - old_centers)));
             fprintf('The center error is %f.\n', diff); fflush(stdout);
 
-            if diff < thrErr
+            if diff <= thrErr
                 fprintf('Clustering finished.\n\n');
                 break;
             end

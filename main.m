@@ -18,8 +18,8 @@ clear; clc;
 
 fprintf('Loading dataset..'); fflush(stdout);
 
-dataset_root = 'ColorImages';
-class_names  = { 'accordion'    'car_side'  'dalmatian' };
+dataset_root = 'images';
+class_names  = { 'accordion' 'crab' 'gramophone' 'airplanes' 'laptop' 'stapler' };
 
 image_per_class = 35;
 image_set       = imageRead(dataset_root, class_names, image_per_class);
@@ -72,4 +72,4 @@ conf_mat = classify(hists, hists_test, class_names, test_set, N);
 
 displayResults;
 
-save('variables_comb.mat');
+%%// save('variables.mat');
