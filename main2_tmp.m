@@ -42,7 +42,7 @@ fprintf('>>> Starting training phase..\n\n'); fflush(stdout);
 % all_des_sample - All the SURF descriptors per sample (1*n cell)
 % class_label    - Class label for each surf descriptor (m*1)
 
-[all_des all_des_sample class_label] = extractFeatures(training_set);
+[all_des all_des_sample class_label] = extractFeatures(training_set, neg_image_set);
 
 %% Creating codebook using K-mean clustering ==============================
 
