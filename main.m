@@ -21,16 +21,11 @@ fprintf('Loading dataset..'); fflush(stdout);
 dataset_root     = 'images';
 class_names      = { 'accordion'   'crab'      'gramophone' 'airplanes' 'laptop'    'dalmatian' ...
                      'soccer_ball' 'cellphone' 'revolver'   'pizza'     'stop_sign' 'sunflower' };
-dataset_root_neg = 'images/zz_negatives';
-class_names_neg  = { 'all' };
 
 image_per_class  = 35;
 image_set        = imageRead(dataset_root, class_names, image_per_class);
 training_set     = image_set(:, 1:25);
 test_set         = image_set(:, 26:end);
-
-neg_image_per_class = 33;
-neg_image_set       = imageRead(dataset_root_neg, class_names_neg, neg_image_per_class);
 
 fprintf('Done\n\n'); fflush(stdout);
 

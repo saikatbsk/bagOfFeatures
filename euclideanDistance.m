@@ -14,7 +14,7 @@
 %%              ||A-B|| = sqrt ( ||A||^2 + ||B||^2 - 2*A.B )
 %% ========================================================================
 
-function d = EuclideanDistance(a, b)
+function d = euclideanDistance(a, b)
     if(nargin ~= 2)
         b = a;
     end

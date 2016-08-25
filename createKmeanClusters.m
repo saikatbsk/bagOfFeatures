@@ -48,7 +48,7 @@ function [centers] = createKmeanClusters(all_des, all_des_sample, N)
 
             id = eye(N);
 
-            d = EuclideanDistance(double(data), double(centers));
+            d = euclideanDistance(double(data), double(centers));
 
             % Assign each descriptor to nearest center
             [minvals, index] = min(d', [], 1);

@@ -89,6 +89,6 @@ FastHessianData.img = iimg;
 ipts = FastHessian_getIpoints(FastHessianData,Options.verbose);
 
 % Describe the interest points
-if(~isempty(ipts))
+if(~isempty(fieldnames(ipts)))
     ipts = SurfDescriptor_DecribeInterestPoints(ipts,Options.upright, Options.extended, iimg, Options.verbose);
 end
