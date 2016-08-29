@@ -33,7 +33,7 @@ fprintf('>>> Starting training phase..\n\n'); fflush(stdout);
 
 %% Extract SURF features from training set ================================
 
-% all_des        - All the SURF descriptors (m*64)
+% all_des        - All the SURF descriptors (m*64) or (m*128)
 % all_des_sample - All the SURF descriptors per sample (1*n cell)
 % class_label    - Class label for each surf descriptor (m*1)
 
