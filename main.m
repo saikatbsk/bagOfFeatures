@@ -73,4 +73,4 @@ conf_mat = classify(hists, hists_test, class_names, test_set, N);
 
 displayResults;
 
-%// save('variables_c12.mat');
+%// save('variables.mat');
