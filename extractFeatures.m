@@ -41,7 +41,28 @@ function [all_des all_des_sample class_label] = extractFeatures(image_set)
             img = imread(str);
             pts = OpenSurf(img, Options);
 
-            D = (reshape([pts.descriptor], K, []))';        % Landmark descriptors
+            % Combine SURF with spatial features
+            comb_features = [];
+
+            for l = 1:size([pts.descriptor], 2)
+                spat_features = [];
+
+                if [pts(l).x] >= size(img, 2)/2
+                    spat_features = [1];
+                else
+                    spat_features = [0];
+                end
+
+                if [pts(l).y] >= size(img, 1)/2
+                    spat_features = [spat_features; 1];
+                else
+                    spat_features = [spat_features; 0];
+                end
+
+                comb_features = [comb_features, [pts(l).descriptor; spat_features]];
+            end
+
+            D = (reshape([comb_features], K+2, []))';       % Landmark descriptors
 
             all_des = cat(1, all_des, D);                   % same as [all_des; D]
             all_des_sample = cat(2, all_des_sample, D);     % same as [all_des_sample, D]
