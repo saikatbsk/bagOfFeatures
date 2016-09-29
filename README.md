@@ -7,11 +7,13 @@ Image classification using the Bag of Features approach. Used the K-mean algorit
 
 #### Instructions
 
+- Download image dataset from here: https://www.vision.caltech.edu/Image_Datasets/Caltech101/
+- Edit `main.m` and change the `dataset_root` variable.
 - Run `main` to train and test the system. Displays the confusion matrix and average accuracy.
 - Run `test` to test with individual files.
 
 #### Expected Results
-![alt text](results/01.png)
+![alt text](img/01.png)
 
 #### Licenses
 - **OpenSURF version 1c** includes its own license.

@@ -19,19 +19,18 @@ function [all_des all_des_sample class_label] = extractFeatures(image_set)
 
     Options.upright  = true;    % Rotation invariant
     Options.tresh    = 0.0001;  % Hessian response threshold
-    Options.extended = true;    % Descriptor length 128
-
-    K = 128;                    % Must be same with SURF dimension
+    Options.extended = true;    % If true - Descriptor length 128
+    K = 128;                    % Must be same with descriptor length
 
     % Add OpenSURF_version1c/ to Octave path
     currentfile = 'extractFeatures.m';
-    pwd = which(currentfile);
-    pwd = pwd(1:(end - length(currentfile)));
-    addpath([pwd 'OpenSURF_version1c']);
+    pwd_ = which(currentfile);
+    pwd_ = pwd_(1:(end - length(currentfile)));
+    addpath([pwd_ 'OpenSURF_version1c']);
 
     k = 0;
 
-    fprintf('Extracting SURF descriptors from input samples..'); fflush(stdout);
+    fprintf('Calculating SURF descriptors for input samples..');
 
     for i = 1:size(image_set, 1)
         k = k + 1;
@@ -39,38 +38,23 @@ function [all_des all_des_sample class_label] = extractFeatures(image_set)
         for j = 1:size(image_set, 2)
             str = char(image_set(i, j));
             img = imread(str);
+
+            % Extract SURF features
             pts = OpenSurf(img, Options);
 
             % Combine SURF with spatial features
-            comb_features = [];
+            comb_features = addSpatialFeatures(pts, img);
 
-            for l = 1:size([pts.descriptor], 2)
-                spat_features = [];
+            % Landmark descriptors
+            D = (reshape([comb_features], K+2, []))';
 
-                if [pts(l).x] >= size(img, 2)/2
-                    spat_features = [1];
-                else
-                    spat_features = [0];
-                end
-
-                if [pts(l).y] >= size(img, 1)/2
-                    spat_features = [spat_features; 1];
-                else
-                    spat_features = [spat_features; 0];
-                end
-
-                comb_features = [comb_features, [pts(l).descriptor; spat_features]];
-            end
-
-            D = (reshape([comb_features], K+2, []))';       % Landmark descriptors
-
-            all_des = cat(1, all_des, D);                   % same as [all_des; D]
-            all_des_sample = cat(2, all_des_sample, D);     % same as [all_des_sample, D]
+            all_des = cat(1, all_des, D);
+            all_des_sample = cat(2, all_des_sample, D);
 
             tmp = ones(size(D, 1), 1) * k;
-            class_label = cat(1, class_label, tmp);         % same as [class_label; tmp]
+            class_label = cat(1, class_label, tmp);
         end
     end
 
-    fprintf('Done\n\n'); fflush(stdout);
+    fprintf('Done\n\n');
 end

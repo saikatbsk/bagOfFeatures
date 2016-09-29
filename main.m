@@ -18,7 +18,7 @@ clear; clc;
 
 fprintf('Loading dataset..'); fflush(stdout);
 
-dataset_root     = 'images';
+dataset_root     = '../Datasets/101_ObjectCategories/';
 class_names      = { 'accordion'   'crab'      'gramophone' 'airplanes' 'laptop'    'dalmatian' ...
                      'soccer_ball' 'cellphone' 'revolver'   'pizza'     'stop_sign' 'sunflower' };
 
