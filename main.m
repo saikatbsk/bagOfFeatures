@@ -18,14 +18,22 @@ clear; clc;
 
 fprintf('Loading dataset..'); fflush(stdout);
 
-dataset_root     = '../Datasets/101_ObjectCategories/';
-class_names      = { 'accordion'   'crab'      'gramophone' 'airplanes' 'laptop'    'dalmatian' ...
-                     'soccer_ball' 'cellphone' 'revolver'   'pizza'     'stop_sign' 'sunflower' };
+dataset_root     = '../Datasets/101_ObjectCategories';
+class_names      = { 'accordion'          'joshua_tree'      'airplanes'    'saxophone'     'dalmatian'     ...
+                     'schooner'           'dollar_bill'      'lamp'         'scissors'      'dolphin'       ...
+                     'laptop'             'Leopards'         'snoopy'       'lobster'       'soccer_ball'   ...
+                     'binocular'          'stapler'          'bonsai'       'euphonium'     'brontosaurus'  ...
+                     'stop_sign'          'Faces'            'Faces_easy'   'metronome'     'strawberry'    ...
+                     'ferry'              'minaret'          'sunflower'    'camera'        'Motorbikes'    ...
+                     'tick'               'flamingo_head'    'nautilus'     'trilobite'     'garfield'      ...
+                     'umbrella'           'okapi'            'watch'        'gramophone'    'pagoda'        ...
+                     'grand_piano'        'wheelchair'       'headphone'    'windsor_chair' 'hedgehog'      ...
+                     'platypus'           'wrench'           'yin_yang'     'revolver'      'inline_skate' };
 
-image_per_class  = 35;
+image_per_class  = 30;
 image_set        = imageRead(dataset_root, class_names, image_per_class);
-training_set     = image_set(:, 1:25);
-test_set         = image_set(:, 26:end);
+training_set     = image_set(:, 1:24);
+test_set         = image_set(:, 25:end);
 
 fprintf('Done\n\n'); fflush(stdout);
 
@@ -41,7 +49,7 @@ fprintf('>>> Starting training phase..\n\n'); fflush(stdout);
 
 %% Creating codebook using K-mean clustering ==============================
 
-N = 500;    % Number of clusters
+N = 1000;    % Number of clusters
 
 centers = createKmeanClusters(all_des, all_des_sample, N);
 
