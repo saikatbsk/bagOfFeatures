@@ -19,7 +19,8 @@ clear; clc;
 fprintf('Loading dataset..'); fflush(stdout);
 
 dataset_root     = '../Datasets/101_ObjectCategories';
-class_names      = { 'accordion'          'joshua_tree'      'airplanes' };
+class_names      = { 'accordion' 'joshua_tree' 'airplanes' 'saxophone' 'dalmatian'     ...
+                     'platypus'   'wrench'     'yin_yang'  'revolver'  'inline_skate' };
 
 image_per_class  = 30;
 image_set        = imageRead(dataset_root, class_names, image_per_class);
