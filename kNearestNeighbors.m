@@ -17,6 +17,10 @@
 %% ========================================================================
 
 function [neighborIds neighborDistances] = kNearestNeighbors(dataMatrix, queryMatrix, k)
+    if(nargin ~= 3)
+        k = 1;
+    end
+
     neighborIds       = zeros(size(queryMatrix, 1), k);
     neighborDistances = neighborIds;
 
