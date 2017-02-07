@@ -42,11 +42,8 @@ function [all_des all_des_sample class_label] = extractFeatures(image_set)
             % Extract SURF features
             pts = OpenSurf(img, Options);
 
-            % Combine SURF with spatial features
-            comb_features = addSpatialFeatures(pts, img);
-
             % Landmark descriptors
-            D = (reshape([comb_features], K+2, []))';
+            D = (reshape([pts.descriptor], K, []))';
 
             all_des = cat(1, all_des, D);
             all_des_sample = cat(2, all_des_sample, D);

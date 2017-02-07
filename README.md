@@ -1,9 +1,8 @@
 ## Image Classification Using Bag of Features
 
-Image classification using the Bag-of-Features model. Speeded-Up Robust Features (SURF) extracted from natural images are clustered and then quantized to create vector representations of training images. Feature vectors are extended to account for spatial information. Classification using a Support Vector Machine (SVM).
+Image classification using the Bag-of-Features model. Training images are represented using clustered and quantized Speeded-Up Robust Features (SURF). Classification using K-Nearest Neighbor.
 
-- Tested with [GNU Octave (4.0.2)](https://www.gnu.org/software/octave/).
-- Looking for MATLAB version? [available here](https://github.com/saikatbsk/daily-dose-of-code/tree/master/MachineLearning/02_BoF)
+Accuracy on a subset of Caltech101 (with 10 classes) is *76.67%*. Tested with [GNU Octave (4.0.2)](https://www.gnu.org/software/octave/).
 
 #### Instructions
 
