@@ -4,9 +4,11 @@ Image classification using the Bag-of-Features model. Training images are repres
 
 Accuracy on a subset of Caltech101 (with 10 classes) is *76.67%*. Tested with [GNU Octave (4.0.2)](https://www.gnu.org/software/octave/).
 
+Read the publication here: [An Improved Bag-of-Features Approach for Object Recognition from Natural Images](http://www.ijcaonline.org/archives/volume151/number10/26267-2016911916)
+
 #### Instructions
 
-- Download image dataset from here: https://www.vision.caltech.edu/Image_Datasets/Caltech101/
+- Download image dataset: https://www.vision.caltech.edu/Image_Datasets/Caltech101/
 - Edit `main.m` and change the `dataset_root` variable.
 - Run `main` to train and test the system. Displays the confusion matrix and average accuracy.
 - Run `test` to test with individual files.
